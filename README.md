@@ -1,5 +1,6 @@
-# MedicalSearchEngine
+# Medical Search Engine
 
+- This version is not responsive yes
 - Created with angular v20.0.2
 - Angular Material: 20.0.3
 - Stylesheet format: Sass (SCSS)
