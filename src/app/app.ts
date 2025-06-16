@@ -7,7 +7,14 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { doctolinkSearchEngine } from '../env/env';
 import { log } from 'console';
+import { doctolinkSearchEngine, firebaseConfig } from '../env/env';
 import { MatRipple } from '@angular/material/core';
+import { initializeApp } from 'firebase/app';
+import { getDatabase, increment, ref, set, update } from 'firebase/database';
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const rtdb = getDatabase(app);
 
 @Component({
   selector: 'doctolink-root',
