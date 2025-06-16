@@ -82,7 +82,7 @@ export class App {
         query_by: 'name,inn',
         per_page: 7,
       })
-      .then((searchMedicationResults) => {
+      .then((searchMedicationResults: any) => {
         this.isMedicationSearchListVisible = true;
 
         this.stats = {
