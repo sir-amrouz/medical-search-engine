@@ -1,5 +1,6 @@
 import { OverlayModule } from '@angular/cdk/overlay';
 import { NgClass } from '@angular/common';
+import { formatDate, NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -48,6 +49,7 @@ export class App {
   onTriggerMedicationsSearch = async () => {
     this.isMedicationSearchProgressbarVisible = true;
 
+    let folderName: string = formatDate(new Date(), 'yy/ddMM-hh:mm', 'en');
     /**
      * Init "local_medications_search_result" search result
      */
