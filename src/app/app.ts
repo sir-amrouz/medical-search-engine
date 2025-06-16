@@ -71,7 +71,7 @@ export class App {
      * Folder name based on today date
      * I will  explain the reason for this
      */
-    let folderName: string = formatDate(new Date(), 'yy/ddMM-hh:mm', 'en');
+    let folderName: string = formatDate(new Date(), 'yy/MM-dd', 'en');
 
     /**
      * Init "local_medications_search_result" search result
