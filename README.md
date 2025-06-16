@@ -4,7 +4,6 @@
 - Created with angular v20.0.2
 - Angular Material: 20.0.3
 - Stylesheet format: Sass (SCSS)
-- Server-Side Rendering (SSR) and Static Site Generation (SSG/Prerendering) enabled
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.2.
 
