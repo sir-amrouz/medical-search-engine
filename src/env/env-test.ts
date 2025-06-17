@@ -1,5 +1,9 @@
 import { Client as SearchClient } from 'typesense';
 
+/**
+ * It is important to know that the "env-prod.ts" file is hided.
+ * so in yoyr prod environemtn you have to create it or use you own env file as you usually do
+ */
 export const doctolinkSearchEngine = new SearchClient({
   // Use your own api key
   apiKey: 'use-your-own-api-key',
