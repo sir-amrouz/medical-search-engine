@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { doctolinkSearchEngine, firebaseConfig } from '../env/env';
+import { doctolinkSearchEngine, firebaseConfig } from '../env/env-prod';
 import { MatRipple } from '@angular/material/core';
 import { initializeApp } from 'firebase/app';
 import { getDatabase, increment, ref, update } from 'firebase/database';
