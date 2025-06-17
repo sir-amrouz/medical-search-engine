@@ -1,17 +1,12 @@
 import { OverlayModule } from '@angular/cdk/overlay';
-import { formatDate, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { doctolinkSearchEngine, firebaseConfig } from '../env/env-prod';
+import { doctolinkSearchEngine } from '../env/env-prod';
 import { MatRipple } from '@angular/material/core';
-import { initializeApp } from 'firebase/app';
-import { getDatabase, increment, ref, update } from 'firebase/database';
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const rtdb = getDatabase(app);
+import { setStats } from '../env/requests';
 
 @Component({
   selector: 'doctolink-root',
@@ -68,12 +63,6 @@ export class App {
     };
 
     /**
-     * Folder name based on today date
-     * I will  explain the reason for this
-     */
-    let folderName: string = formatDate(new Date(), 'yy/MM-dd', 'en');
-
-    /**
      * Init "local_medications_search_result" search result
      */
     let local_medications_search_result: any[] = [];
@@ -116,33 +105,12 @@ export class App {
         let medicsFound: number = (this.searchStats.medicsFound +=
           searchMedicationResults.found);
 
-        /**
-         * Set search sights
-         */
-        let allUpdates: any = {};
-        allUpdates['overview/searchTriggered'] = increment(searchTriggered);
-        allUpdates['overview/medicsHits'] = increment(medicsHits);
-        allUpdates['overview/medicsFound'] = increment(medicsFound);
-
-        allUpdates[`overview/dates/${folderName}/searchTriggered`] =
-          increment(searchTriggered);
-        allUpdates[`overview/dates/${folderName}/medicsHits`] =
-          increment(medicsHits);
-        allUpdates[`overview/dates/${folderName}/medicsFound`] =
-          increment(medicsFound);
-
-        for (let medic of searchMedicationResults.hits) {
-          /**
-           * To accurately obtain the number of times a medication was loaded on a given date
-           */
-          allUpdates[`overview/medics/${medic.document.id}/${folderName}`] =
-            increment(1);
-        }
-
-        /**
-         * Apply all sights
-         */
-        update(ref(rtdb), allUpdates);
+        setStats(
+          searchTriggered,
+          medicsHits,
+          medicsFound,
+          searchMedicationResults.hits
+        );
 
         this.stats = {
           found: searchMedicationResults.found,
