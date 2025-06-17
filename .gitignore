@@ -39,3 +39,5 @@ Thumbs.db
 .firebaserc
 firebase.json
 firebase-debug.log
+src/env/env.ts
+src/env/env-prod.ts
